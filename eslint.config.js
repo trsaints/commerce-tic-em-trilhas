@@ -35,7 +35,14 @@ export default [
 			'react-refresh/only-export-components': [
 				'warn',
 				{ allowConstantExport: true }
-			]
+			],
+			'@typescript-eslint/no-unsafe-call'   : 'off',
+			'@typescript-eslint/no-unsafe-assignment'   : 'off'
+		},
+		settings: {
+			react: {
+				version: 'detect'
+			}
 		}
 	}
 ]
