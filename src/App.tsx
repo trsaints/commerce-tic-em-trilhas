@@ -1,11 +1,17 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { Home } from './view/Home.tsx'
 import { Header } from './components/Header.tsx'
 
 
 const mainRouter = createBrowserRouter([
 										   {
 											   path   : '/',
-											   element: <Header/>,
+											   element: (
+												   <>
+													   <Header/>
+													   <Home/>
+												   </>
+											   ),
 											   index  : true
 										   }
 									   ])
