@@ -2,6 +2,7 @@ import { useQuery } from 'react-query'
 import { Product } from '../data/types/Product.ts'
 import { ProductService } from '../data/services/product.service.ts'
 import React, { useState } from 'react'
+import { debounce } from 'lodash'
 
 
 export { Header }
@@ -10,10 +11,9 @@ function Header() {
 	const [search, setSearch] = useState<string>('')
 
 	const { data, isLoading, error } = useQuery<Product[], Error>(
-		'query-products-search',
-		async () => {
-			return await ProductService.search(search)
-		}
+		['query-products-search', search],
+		async () => await ProductService.search(search),
+		{ enabled: search !== '' }
 	)
 
 	const handleSearch = (event: React.FormEvent<HTMLInputElement>) => {
@@ -27,6 +27,8 @@ function Header() {
 
 		setSearch(value)
 	}
+
+	const handleSearchDebounce = debounce(handleSearch, 200)
 
 	return (
 		<header
@@ -46,13 +48,13 @@ function Header() {
 
 							<input
 								className="rounded bg-gray-200 px-5 py-2.5"
-								onInput={handleSearch}
+								onInput={handleSearchDebounce}
 								type="search"
 								name="search"
 								list="suggestions"
 								id="search"/>
 
-							<datalist className='bg-gray-200' id="suggestions">
+							<datalist className="bg-gray-200" id="suggestions">
 								{((search !== '') && data)
 								 && data.map(product => (
 												 <option>{product.name}</option>
