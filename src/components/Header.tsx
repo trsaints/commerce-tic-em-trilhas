@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query'
 import { Product } from '../data/types/Product.ts'
 import { ProductService } from '../data/services/product.service.ts'
-import React, { useState } from 'react'
-import { debounce } from 'lodash'
+import React, { PropsWithChildren, useState } from 'react'
+import { debounce, DebouncedFunc } from 'lodash'
 
 
 export { Header }
@@ -40,35 +40,8 @@ function Header() {
 
 			<menu className="flex flex-grow justify-between gap-48">
 				<li>
-					<div className="flex flex-col gap-5">
-						<form>
-							<label className="mr-5" htmlFor="search">
-								search term
-							</label>
-
-							<input
-								className="rounded bg-gray-200 px-5 py-2.5"
-								onInput={handleSearchDebounce}
-								type="search"
-								name="search"
-								list="suggestions"
-								id="search"/>
-
-							<datalist className="bg-gray-200" id="suggestions">
-								{((search !== '') && data)
-								 && data.map(product => (
-												 <option>{product.name}</option>
-											 )
-									)}
-							</datalist>
-
-							<button
-								className="bg-blue-500 rounded-br rounded-tr px-5 py-2.5"
-								type="submit">
-								search
-							</button>
-						</form>
-					</div>
+					<SearchWidget handleSearchDebounce={handleSearchDebounce}
+								  search={search} data={data}/>
 				</li>
 
 				<li>
@@ -78,5 +51,47 @@ function Header() {
 				</li>
 			</menu>
 		</header>
+	)
+}
+
+interface ISearchWidget extends PropsWithChildren {
+	handleSearchDebounce: DebouncedFunc<(event: React.FormEvent<HTMLInputElement>) => void>
+	search: string
+	data?: Product[]
+}
+
+function SearchWidget(props: ISearchWidget) {
+	const { handleSearchDebounce, search, data } = props
+
+	return (
+		<div className="flex flex-col gap-5">
+			<form>
+				<label className="mr-5" htmlFor="search">
+					search term
+				</label>
+
+				<input
+					className="rounded bg-gray-200 px-5 py-2.5"
+					onInput={handleSearchDebounce}
+					type="search"
+					name="search"
+					list="suggestions"
+					id="search"/>
+
+				<datalist className="bg-gray-200" id="suggestions">
+					{((search !== '') && data)
+					 && data.map(product => (
+									 <option>{product.name}</option>
+								 )
+						)}
+				</datalist>
+
+				<button
+					className="bg-blue-500 rounded-br rounded-tr px-5 py-2.5"
+					type="submit">
+					search
+				</button>
+			</form>
+		</div>
 	)
 }
