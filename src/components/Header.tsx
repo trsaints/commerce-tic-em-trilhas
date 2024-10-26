@@ -1,6 +1,33 @@
+import { useQuery } from 'react-query'
+import { Product } from '../data/types/Product.ts'
+import { ProductService } from '../data/services/product.service.ts'
+import React, { useState } from 'react'
+
+
 export { Header }
 
 function Header() {
+	const [search, setSearch] = useState<string>('')
+
+	const { data, isLoading, error } = useQuery<Product[], Error>(
+		'query-products-search',
+		async () => {
+			return await ProductService.search(search)
+		}
+	)
+
+	const handleSearch = (event: React.FormEvent<HTMLInputElement>) => {
+		event.preventDefault()
+
+		if (! event.target) return
+
+		const { value } = event.target as HTMLInputElement
+
+		if (value === '') return
+
+		setSearch(value)
+	}
+
 	return (
 		<header
 			className="flex fixed gap-48 top-0 right-0 w-full bg-white py-3 px-5">
@@ -11,22 +38,35 @@ function Header() {
 
 			<menu className="flex flex-grow justify-between gap-48">
 				<li>
-					<form>
-						<label className="mr-5" htmlFor="search">
-							search term
-						</label>
+					<div className="flex flex-col gap-5">
+						<form>
+							<label className="mr-5" htmlFor="search">
+								search term
+							</label>
 
-						<input
-							className="rounded bg-gray-200 px-5 py-2.5"
-							type="text"
-							id="search"/>
+							<input
+								className="rounded bg-gray-200 px-5 py-2.5"
+								onInput={handleSearch}
+								type="search"
+								name="search"
+								list="suggestions"
+								id="search"/>
 
-						<button
-							className="bg-blue-500 rounded-br rounded-tr px-5 py-2.5"
-							type="submit">
-							search
-						</button>
-					</form>
+							<datalist className='bg-gray-200' id="suggestions">
+								{((search !== '') && data)
+								 && data.map(product => (
+												 <option>{product.name}</option>
+											 )
+									)}
+							</datalist>
+
+							<button
+								className="bg-blue-500 rounded-br rounded-tr px-5 py-2.5"
+								type="submit">
+								search
+							</button>
+						</form>
+					</div>
 				</li>
 
 				<li>
