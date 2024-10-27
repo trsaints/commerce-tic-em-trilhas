@@ -1,0 +1,22 @@
+import { createContext } from 'react'
+import { ListItem } from '../types/ListItem.ts'
+import { Product } from '../types/Product.ts'
+
+
+export { ShoppingCartContext }
+
+export interface IShoppingCartContext {
+	listItems: ListItem[]
+	addProduct: ({ id, name, price }: Product) => void
+	removeProduct: (id: string) => void
+	increaseQuantity: (id: string) => void
+	decreaseQuantity: (id: string) => void
+}
+
+const ShoppingCartContext = createContext<IShoppingCartContext>({
+																	listItems       : [],
+																	addProduct      : () => {},
+																	removeProduct   : () => {},
+																	increaseQuantity: () => {},
+																	decreaseQuantity: () => {}
+																})
