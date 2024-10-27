@@ -1,7 +1,8 @@
+import { Product } from './Product.ts'
+
+
 export type ListItem = {
-	id: string
-	name: string
+	product: Product
 	quantity: number
-	price: number
 	amount: number
 }

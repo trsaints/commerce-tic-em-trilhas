@@ -7,7 +7,7 @@ export { ShoppingCartContext }
 
 export interface IShoppingCartContext {
 	listItems: ListItem[]
-	addProduct: ({ id, name, price }: Product) => void
+	addProduct: (product: Product) => void
 	removeProduct: (id: string) => void
 	updateQuantity: (id: string, quantity: number) => void
 }

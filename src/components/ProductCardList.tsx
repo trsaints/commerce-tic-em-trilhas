@@ -29,8 +29,7 @@ export function ProductCardList({ productData }: IProductCardList) {
 
 	const productCardList = productData.map(product => (
 		<li key={`product-${product.id}`}>
-			<Card banner="https://picsum.photos/200" name={product.name}
-				  price={product.price}/>
+			<Card product={product}/>
 		</li>
 	))
 
