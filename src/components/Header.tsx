@@ -3,6 +3,7 @@ import { Product } from '../data/types/Product.ts'
 import { ProductService } from '../data/services/product.service.ts'
 import React, { PropsWithChildren, useState } from 'react'
 import { debounce, DebouncedFunc } from 'lodash'
+import { CiBag1, CiSearch, CiShoppingCart } from 'react-icons/ci'
 
 
 export { Header }
@@ -35,7 +36,10 @@ function Header() {
 			className="flex fixed gap-48 top-0 right-0 w-full bg-white py-3 px-5">
 			<figure>
 				<img className="max-w-36" src="" alt=""/>
-				<figcaption>logo</figcaption>
+				<figcaption className="p-2">
+					<span className="sr-only">logo</span>
+					<CiBag1 className="size-5"/>
+				</figcaption>
 			</figure>
 
 			<menu className="flex flex-grow justify-between gap-48">
@@ -45,8 +49,9 @@ function Header() {
 				</li>
 
 				<li>
-					<button>
-						carrinho
+					<button className="rounded-md bg-blue-500 p-2">
+						<span className="sr-only">carrinho</span>
+						<CiShoppingCart className="size-5"/>
 					</button>
 				</li>
 			</menu>
@@ -89,7 +94,8 @@ function SearchWidget(props: ISearchWidget) {
 				<button
 					className="bg-blue-500 rounded-br rounded-tr px-5 py-2.5"
 					type="submit">
-					search
+					<span className="sr-only">search products</span>
+					<CiSearch className="size-5"/>
 				</button>
 			</form>
 		</div>
