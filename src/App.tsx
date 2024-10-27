@@ -1,26 +1,29 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { RootLayout } from './layouts/RootLayout.tsx'
 import { Home } from './view/Home.tsx'
-import { Header } from './components/Header.tsx'
+import { ShoppingCart } from './view/ShoppingCart.tsx'
 
 
 const mainRouter = createBrowserRouter([
 										   {
-											   path   : '/',
-											   element: (
-												   <>
-													   <Header/>
-													   <Home/>
-												   </>
-											   ),
-											   index  : true
+											   path    : '/',
+											   element : <RootLayout/>,
+											   children: [
+												   {
+													   path   : '/',
+													   element: <Home/>,
+													   index  : true
+												   },
+												   {
+													   path   : '/cart',
+													   element: <ShoppingCart/>
+												   }
+											   ]
 										   }
 									   ])
 
 export function App() {
 	return (
-		<main
-			className="flex justify-content-center items-center bg-gray-200">
-			<RouterProvider router={mainRouter}/>
-		</main>
+		<RouterProvider router={mainRouter}/>
 	)
 }
