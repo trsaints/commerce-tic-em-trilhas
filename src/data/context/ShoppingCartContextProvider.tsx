@@ -12,7 +12,7 @@ function ShoppingCartContextProvider({ children }: PropsWithChildren) {
 
 	const shoppingCartContext: IShoppingCartContext = {
 		listItems,
-		addProduct      : ({ id, name, price }: Product) => {
+		addProduct    : ({ id, name, price }: Product) => {
 			const existingItemIndex = listItems.findIndex((item) => item.id
 																	=== id)
 
@@ -30,36 +30,21 @@ function ShoppingCartContextProvider({ children }: PropsWithChildren) {
 				return
 			}
 
-			shoppingCartContext.increaseQuantity(id)
+			shoppingCartContext.updateQuantity(id, 1)
 		},
-		removeProduct   : (id: string) => {
+		removeProduct : (id: string) => {
 			const updatedListItems = listItems.filter((item) => item.id !== id)
 
 			setListItems(updatedListItems)
 		},
-		increaseQuantity: (id: string) => {
-			const updatedListItems = listItems.map((item) => {
-				if (item.id === id) {
-					return {
-						...item,
-						quantity: item.quantity + 1,
-						amount  : item.price * item.quantity
-					}
-				}
-
-				return item
-			})
-
-			setListItems(updatedListItems)
-		},
-		decreaseQuantity: (id: string) => {
+		updateQuantity: (id: string, quantity: number) => {
 			let currentQuantity = -1
 
 			const updatedListItems = listItems.map((item) => {
 				if (item.id === id) {
 					return {
 						...item,
-						quantity: item.quantity - 1,
+						quantity: item.quantity + quantity,
 						amount  : item.price * item.quantity
 					}
 				}

@@ -9,14 +9,12 @@ export interface IShoppingCartContext {
 	listItems: ListItem[]
 	addProduct: ({ id, name, price }: Product) => void
 	removeProduct: (id: string) => void
-	increaseQuantity: (id: string) => void
-	decreaseQuantity: (id: string) => void
+	updateQuantity: (id: string, quantity: number) => void
 }
 
 const ShoppingCartContext = createContext<IShoppingCartContext>({
-																	listItems       : [],
-																	addProduct      : () => {},
-																	removeProduct   : () => {},
-																	increaseQuantity: () => {},
-																	decreaseQuantity: () => {}
+																	listItems     : [],
+																	addProduct    : () => {},
+																	removeProduct : () => {},
+																	updateQuantity: () => {}
 																})
