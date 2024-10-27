@@ -29,7 +29,9 @@ export function ProductCardList({ productData }: IProductCardList) {
 
 	const productCardList = productData.map(product => (
 		<li key={`product-${product.id}`}>
-			<Card product={product}/>
+			<Card.Body product={product}>
+				<Card.BuyButton id={product.id}/>
+			</Card.Body>
 		</li>
 	))
 
