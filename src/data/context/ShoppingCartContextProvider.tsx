@@ -7,6 +7,8 @@ import { ListItem } from '../types/ListItem.ts'
 import { Product } from '../types/Product.ts'
 
 
+export { ShoppingCartContextProvider }
+
 function ShoppingCartContextProvider({ children }: PropsWithChildren) {
 	const [listItems, setListItems] = useState<ListItem[]>([])
 

@@ -2,6 +2,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { RootLayout } from './layouts/RootLayout.tsx'
 import { Home } from './view/Home.tsx'
 import { ShoppingCart } from './view/ShoppingCart.tsx'
+import {
+	ShoppingCartContextProvider
+} from './data/context/ShoppingCartContextProvider.tsx'
 
 
 const mainRouter = createBrowserRouter([
@@ -24,6 +27,8 @@ const mainRouter = createBrowserRouter([
 
 export function App() {
 	return (
-		<RouterProvider router={mainRouter}/>
+		<ShoppingCartContextProvider>
+			<RouterProvider router={mainRouter}/>
+		</ShoppingCartContextProvider>
 	)
 }
