@@ -1,8 +1,6 @@
-import { ProductService } from '../data/services/product.service.ts'
-import { useQuery } from 'react-query'
-import { Product } from '../data/types/Product.ts'
 import React, { useState } from 'react'
 import { ProductCardList } from '../components/ProductCardList.tsx'
+import { useProductData } from '../hooks/useProductData.ts'
 
 
 export { Home }
@@ -10,10 +8,7 @@ export { Home }
 function Home() {
 	const [productOrder, setProductOrder] = useState<'asc' | 'dsc'>('asc')
 
-	const { data: productData, error, isLoading } = useQuery<Product[], Error>(
-		['products-query', productOrder],
-		async () => await ProductService.getAll(productOrder)
-	)
+	const { data: productData } = useProductData(productOrder)
 
 	const handleOrderChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		if (! event.target.value) return
