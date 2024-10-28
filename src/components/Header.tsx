@@ -1,10 +1,9 @@
-import { useQuery } from 'react-query'
 import { Product } from '../data/types/Product.ts'
-import { ProductService } from '../data/services/product.service.ts'
 import React, { PropsWithChildren, useState } from 'react'
 import { debounce, DebouncedFunc } from 'lodash'
 import { CiBag1, CiSearch, CiShoppingCart } from 'react-icons/ci'
 import { Link } from 'react-router-dom'
+import { useSearchData } from '../hooks/useSearchData.ts'
 
 
 export { Header }
@@ -12,11 +11,7 @@ export { Header }
 function Header() {
 	const [search, setSearch] = useState<string>('')
 
-	const { data } = useQuery<Product[], Error>(
-		['query-products-search', search],
-		async () => await ProductService.search(search),
-		{ enabled: search !== '' }
-	)
+	const { data } = useSearchData(search)
 
 	const handleSearch = (event: React.FormEvent<HTMLInputElement>) => {
 		event.preventDefault()
