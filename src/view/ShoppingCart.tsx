@@ -15,12 +15,12 @@ function ShoppingCart() {
 
 	return (
 		<article>
-			<h1 className="h1">Carrinho</h1>
+			<h1 className="h1 capitalize">meu carrinho</h1>
 
 			<CartList listItems={listItems}/>
 
 			<aside>
-				<h2>Você pode gostar de...</h2>
+				<h2 className="mb-12 font-bold">Você pode gostar de...</h2>
 
 				<ProductCardList productData={productData ?? []}/>
 			</aside>
@@ -43,6 +43,6 @@ function CartList({ listItems }: ICartList) {
 	))
 
 	return (
-		<ul className="flex gap-4">{cartItems}</ul>
+		<ul className="flex gap-4 mb-24">{cartItems}</ul>
 	)
 }

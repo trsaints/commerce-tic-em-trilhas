@@ -28,19 +28,13 @@ function Header() {
 	const handleSearchDebounce = debounce(handleSearch, 200)
 
 	return (
-		<header
-			className="flex fixed gap-48 top-0 right-0 w-full bg-white py-3 px-5">
-			<figure>
-				<img className="max-w-36" src="" alt=""/>
-				<figcaption className="p-2">
-					<Link to="/">
-						<span className="sr-only">logo</span>
-						<CiBag1 className="size-5"/>
-					</Link>
-				</figcaption>
-			</figure>
+		<header className="flex fixed gap-4 top-0 right-0 w-full bg-white py-3 px-5 shadow">
+			<Link to="/" className="inline-block p-2">
+				<span className="sr-only">logo</span>
+				<CiBag1 className="size-5"/>
+			</Link>
 
-			<menu className="flex flex-grow justify-between gap-48">
+			<menu className="flex flex-grow justify-between gap-4 items-center">
 				<li>
 					<SearchWidget handleSearchDebounce={handleSearchDebounce}
 								  search={search} data={data}/>
@@ -50,7 +44,7 @@ function Header() {
 					<Link to="/cart"
 						  className="block rounded-md bg-blue-500 p-2">
 						<span className="sr-only">carrinho</span>
-						<CiShoppingCart className="size-5"/>
+						<CiShoppingCart className="size-6"/>
 					</Link>
 				</li>
 			</menu>
@@ -68,12 +62,12 @@ function SearchWidget(props: ISearchWidget) {
 	const { handleSearchDebounce, search, data } = props
 
 	return (
-		<form className="flex">
-			<label className="mr-5" htmlFor="search">
+		<form className="flex rounded overflow-hidden">
+			<label className="sr-only" htmlFor="search">
 				search term
 			</label>
 
-			<input className="rounded bg-gray-200 px-5 py-2.5"
+			<input className="bg-gray-200 p-2 max-w-40"
 				   onInput={handleSearchDebounce}
 				   type="search"
 				   name="search"
@@ -86,7 +80,7 @@ function SearchWidget(props: ISearchWidget) {
 				}
 			</datalist>
 
-			<button className="bg-blue-500 rounded-br rounded-tr px-5 py-2.5"
+			<button className="bg-blue-500 px-4 py-2"
 					type="submit">
 				<span className="sr-only">search products</span>
 				<CiSearch className="size-5"/>

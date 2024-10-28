@@ -36,7 +36,7 @@ export function ProductCardList({ productData }: IProductCardList) {
 	))
 
 	return (
-		<ul className="flex gap-5 flex-wrap"
+		<ul className="flex gap-5 overflow-x-hidden"
 			onClick={handleAddProduct}>
 			{productCardList}
 		</ul>
