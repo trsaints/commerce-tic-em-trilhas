@@ -17,7 +17,7 @@ function Home() {
 	}
 
 	return (
-		<article>
+		<article className='overflow-hidden'>
 			<h1 className="h1">TIC Market</h1>
 
 			<select className="capitalize mb-10 p-2"

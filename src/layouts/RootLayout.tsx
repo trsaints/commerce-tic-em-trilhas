@@ -10,7 +10,7 @@ function RootLayout() {
 		<>
 			<Header/>
 
-			<main className="flex justify-content-center items-center bg-gray-200 px-10 pt-32 overflow-hidden scrollbar-thin">
+			<main className="flex justify-content-center items-center bg-gray-200 px-5 pt-32">
 				<Suspense fallback={'carregando...'}>
 					<Outlet/>
 				</Suspense>

@@ -14,7 +14,7 @@ function ShoppingCart() {
 	const { data: productData } = useProductData('asc')
 
 	return (
-		<article>
+		<article className="overflow-hidden">
 			<h1 className="h1 capitalize">meu carrinho</h1>
 
 			<CartList listItems={listItems}/>
@@ -43,6 +43,6 @@ function CartList({ listItems }: ICartList) {
 	))
 
 	return (
-		<ul className="flex gap-4 mb-24">{cartItems}</ul>
+		<ul className="flex flex-col gap-4 mb-24">{cartItems}</ul>
 	)
 }

@@ -26,7 +26,6 @@ export function ProductCardList({ productData }: IProductCardList) {
 		addProduct(selectedProduct)
 	}
 
-
 	const productCardList = productData.map(product => (
 		<li key={`product-${product.id}`}>
 			<Card.Body product={product}>
@@ -36,7 +35,7 @@ export function ProductCardList({ productData }: IProductCardList) {
 	))
 
 	return (
-		<ul className="flex gap-5 overflow-x-hidden"
+		<ul className="flex gap-5 overflow-x-scroll"
 			onClick={handleAddProduct}>
 			{productCardList}
 		</ul>
