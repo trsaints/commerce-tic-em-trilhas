@@ -12,7 +12,7 @@ export { Header }
 function Header() {
 	const [search, setSearch] = useState<string>('')
 
-	const { data, isLoading, error } = useQuery<Product[], Error>(
+	const { data } = useQuery<Product[], Error>(
 		['query-products-search', search],
 		async () => await ProductService.search(search),
 		{ enabled: search !== '' }
@@ -73,35 +73,29 @@ function SearchWidget(props: ISearchWidget) {
 	const { handleSearchDebounce, search, data } = props
 
 	return (
-		<div className="flex flex-col gap-5">
-			<form>
-				<label className="mr-5" htmlFor="search">
-					search term
-				</label>
+		<form className="flex">
+			<label className="mr-5" htmlFor="search">
+				search term
+			</label>
 
-				<input
-					className="rounded bg-gray-200 px-5 py-2.5"
-					onInput={handleSearchDebounce}
-					type="search"
-					name="search"
-					list="suggestions"
-					id="search"/>
+			<input className="rounded bg-gray-200 px-5 py-2.5"
+				   onInput={handleSearchDebounce}
+				   type="search"
+				   name="search"
+				   list="suggestions"
+				   id="search"/>
 
-				<datalist className="bg-gray-200" id="suggestions">
-					{((search !== '') && data)
-					 && data.map(product => (
-									 <option>{product.name}</option>
-								 )
-						)}
-				</datalist>
+			<datalist className="bg-gray-200" id="suggestions">
+				{((search !== '') && data)
+				 && data.map(product => (<option>{product.name}</option>))
+				}
+			</datalist>
 
-				<button
-					className="bg-blue-500 rounded-br rounded-tr px-5 py-2.5"
+			<button className="bg-blue-500 rounded-br rounded-tr px-5 py-2.5"
 					type="submit">
-					<span className="sr-only">search products</span>
-					<CiSearch className="size-5"/>
-				</button>
-			</form>
-		</div>
+				<span className="sr-only">search products</span>
+				<CiSearch className="size-5"/>
+			</button>
+		</form>
 	)
 }

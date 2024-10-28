@@ -10,8 +10,7 @@ function RootLayout() {
 		<>
 			<Header/>
 
-			<main
-				className="flex justify-content-center items-center bg-gray-200 pt-40">
+			<main className="flex justify-content-center items-center bg-gray-200 px-10 pt-52">
 				<Suspense fallback={'carregando...'}>
 					<Outlet/>
 				</Suspense>

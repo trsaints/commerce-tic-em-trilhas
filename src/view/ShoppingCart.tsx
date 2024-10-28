@@ -15,7 +15,7 @@ function ShoppingCart() {
 
 	return (
 		<article>
-			<h1>Carrinho</h1>
+			<h1 className="h1">Carrinho</h1>
 
 			<CartList listItems={listItems}/>
 
@@ -43,6 +43,6 @@ function CartList({ listItems }: ICartList) {
 	))
 
 	return (
-		<ul className='flex gap-4'>{cartItems}</ul>
+		<ul className="flex gap-4">{cartItems}</ul>
 	)
 }

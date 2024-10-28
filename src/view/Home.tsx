@@ -17,8 +17,8 @@ function Home() {
 	}
 
 	return (
-		<article className="px-10 mt-52">
-			<h1 className="mb-24 text-3xl font-bold">TIC Market</h1>
+		<article>
+			<h1 className="h1">TIC Market</h1>
 
 			<select className="capitalize mb-10 p-2"
 					onChange={handleOrderChange} name="order" id="order">
