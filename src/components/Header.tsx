@@ -20,8 +20,6 @@ function Header() {
 
 		const { value } = event.target as HTMLInputElement
 
-		if (value === '') return
-
 		setSearch(value)
 	}
 
@@ -37,6 +35,7 @@ function Header() {
 			<menu className="flex flex-grow justify-between gap-4 items-center">
 				<li>
 					<SearchWidget handleSearchDebounce={handleSearchDebounce}
+								  search={search}
 								  data={data}/>
 				</li>
 

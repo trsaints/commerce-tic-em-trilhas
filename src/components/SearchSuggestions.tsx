@@ -8,8 +8,8 @@ interface ISearchSuggestions extends ComponentProps<'aside'> {
 
 export function SearchSuggestions({ products }: ISearchSuggestions) {
 	return (
-		<aside className="bg-gray-100 rounded-b">
-			<ul className="overflow-y-scroll h-14 flex flex-col gap-2 p-2">
+		<aside className="bg-gray-300 absolute top-10 w-44">
+			<ul className="overflow-y-scroll h-16 flex flex-col gap-[0.0625rem]">
 				{products.map(product => {
 					const nameToDisplay = product.name.length > 10
 										  ? product.name.slice(0, 10) + '...'
@@ -17,9 +17,9 @@ export function SearchSuggestions({ products }: ISearchSuggestions) {
 
 					return (
 						<li key={product.id}>
-							<button className="rounded overflow-hidden bg-white shadow text-left"
+							<button className="overflow-hidden bg-white text-left w-full"
 									type="button">
-								<img className="w-1/4  inline-block mr-2"
+								<img className="size-12  inline-block mr-2"
 									 src="https://picsum.photos/200"
 									 alt={`display banner for the "${product.name}" product`}/>
 

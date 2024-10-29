@@ -8,10 +8,11 @@ import { SearchSuggestions } from './SearchSuggestions.tsx'
 interface ISearchWidget extends PropsWithChildren {
 	handleSearchDebounce: DebouncedFunc<(event: React.FormEvent<HTMLInputElement>) => void>
 	data?: Product[]
+	search: string
 }
 
 export function SearchWidget(props: ISearchWidget) {
-	const { handleSearchDebounce, data } = props
+	const { handleSearchDebounce, search, data } = props
 
 	const formStyles = {
 		gridTemplateAreas: '"search button" "suggestions blank"'
@@ -30,12 +31,12 @@ export function SearchWidget(props: ISearchWidget) {
 	}
 
 	return (
-		<form className="grid rounded" style={formStyles}>
+		<form className="grid rounded relative" style={formStyles}>
 			<label className="sr-only" htmlFor="search">
 				search term
 			</label>
 
-			<input className="bg-gray-200 p-2 max-w-40"
+			<input className="bg-gray-200 p-2 w-full rounded-tl rounded-bl"
 				   onInput={handleSearchDebounce}
 				   style={inputStyles}
 				   type="search"
@@ -43,12 +44,12 @@ export function SearchWidget(props: ISearchWidget) {
 				   id="search"/>
 
 			{
-				data && data.length > 0
+				(search !== '') && (data && data.length > 0)
 				&& (<SearchSuggestions products={data}
 									   style={suggestionsStyles}/>)
 			}
 
-			<button className="bg-blue-500 px-4 py-2"
+			<button className="bg-blue-500 px-4 py-2 rounded-tr rounded-br"
 					style={buttonStyles}
 					type="submit">
 				<span className="sr-only">search products</span>
