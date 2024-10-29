@@ -14,21 +14,10 @@ interface ISearchWidget extends PropsWithChildren {
 export function SearchWidget(props: ISearchWidget) {
 	const { handleSearchDebounce, search, data } = props
 
-	const formStyles = {
-		gridTemplateAreas: '"search button" "suggestions blank"'
-	}
-
-	const inputStyles = {
-		gridArea: 'search'
-	}
-
-	const buttonStyles = {
-		gridArea: 'button'
-	}
-
-	const suggestionsStyles = {
-		gridArea: 'suggestions'
-	}
+	const formStyles        = { gridTemplateAreas: '"search button" "suggestions blank"' },
+		  inputStyles       = { gridArea: 'search' },
+		  buttonStyles      = { gridArea: 'button' },
+		  suggestionsStyles = { gridArea: 'suggestions' }
 
 	return (
 		<form className="grid rounded relative show-suggestions"

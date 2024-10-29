@@ -15,7 +15,18 @@ function ShoppingCart() {
 		<article className="overflow-hidden">
 			<h1 className="h1 capitalize">meu carrinho</h1>
 
-			<CartList listItems={listItems}/>
+			{
+				listItems.length > 0 ? <CartList listItems={listItems}/>
+									 : (
+					<p className="text-center mb-24 capitalize">
+						<img src="/assets/empty-cart.svg"
+							 alt="Carrinho vazio"
+							 className="block mx-auto mb-12"/>
+
+						seu carrinho está vazio. que tal adicionar um produto?
+					</p>
+				)
+			}
 
 			<aside>
 				<h2 className="mb-12 font-bold">Você pode gostar de...</h2>
