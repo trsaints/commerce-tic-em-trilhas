@@ -2,9 +2,7 @@ import { ShoppingCartContext } from '../data/context/ShoppingCartContext.ts'
 import { useContext } from 'react'
 import { ProductCardList } from '../components/ProductCardList.tsx'
 import { useProductData } from '../hooks/useProductData.ts'
-import { Card } from '../components/Card.tsx'
-import { CartItemControls } from '../components/CartItemControls.tsx'
-import { ListItem } from '../data/types/ListItem.ts'
+import { CartList } from './CartList.tsx'
 
 
 export { ShoppingCart }
@@ -25,24 +23,5 @@ function ShoppingCart() {
 				<ProductCardList productData={productData ?? []}/>
 			</aside>
 		</article>
-	)
-}
-
-interface ICartList {
-	listItems: ListItem[]
-}
-
-function CartList({ listItems }: ICartList) {
-	const products  = listItems.map(listItem => listItem.product)
-	const cartItems = products.map(product => (
-		<li>
-			<Card.Body product={product}>
-				<CartItemControls {...product} />
-			</Card.Body>
-		</li>
-	))
-
-	return (
-		<ul className="flex flex-col gap-4 mb-24">{cartItems}</ul>
 	)
 }

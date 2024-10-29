@@ -1,6 +1,7 @@
 import { ComponentProps } from 'react'
-import { CiShoppingCart, CiShoppingTag } from 'react-icons/ci'
+import { CiShoppingTag } from 'react-icons/ci'
 import { Product } from '../data/types/Product.ts'
+import { BuyButton } from './BuyButton.tsx'
 
 
 export const Card = {
@@ -27,19 +28,5 @@ function Body({ product, children }: ICard) {
 
 			{children}
 		</article>
-	)
-}
-
-interface IBuyButton extends ComponentProps<'button'> {
-	id: string
-}
-
-function BuyButton({ id }: IBuyButton) {
-	return (
-		<button
-			className="flex justify-center gap-2 px-2 py-1 bg-blue-500 text-white rounded-lg w-full hover:bg-blue-700"
-			data-product-id={id}>
-			add to cart <CiShoppingCart/>
-		</button>
 	)
 }
