@@ -8,7 +8,7 @@ interface ISearchSuggestions extends ComponentProps<'aside'> {
 
 export function SearchSuggestions({ products }: ISearchSuggestions) {
 	return (
-		<aside className="bg-gray-300 absolute top-10 w-44">
+		<aside className="hidden suggestions bg-gray-300 absolute top-10 w-44">
 			<ul className="overflow-y-scroll h-16 flex flex-col gap-[0.0625rem]">
 				{products.map(product => {
 					const nameToDisplay = product.name.length > 10

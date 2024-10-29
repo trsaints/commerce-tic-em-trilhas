@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import { useSearchData } from '../hooks/useSearchData.ts'
 import { SearchWidget } from './SearchWidget.tsx'
 
-
 export { Header }
 
 function Header() {

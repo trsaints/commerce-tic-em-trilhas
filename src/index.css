@@ -5,3 +5,13 @@
 .h1 {
 	@apply mb-24 text-3xl font-bold;
 }
+
+.suggestions {
+	display: none;
+}
+
+.show-suggestions:focus-within {
+	.suggestions {
+		display: block;
+	}
+}

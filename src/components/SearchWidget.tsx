@@ -31,7 +31,8 @@ export function SearchWidget(props: ISearchWidget) {
 	}
 
 	return (
-		<form className="grid rounded relative" style={formStyles}>
+		<form className="grid rounded relative show-suggestions"
+			  style={formStyles}>
 			<label className="sr-only" htmlFor="search">
 				search term
 			</label>
