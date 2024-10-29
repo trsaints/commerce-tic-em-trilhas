@@ -1,6 +1,5 @@
 import { ListItem } from '../data/types/ListItem.ts'
-import { Card } from '../components/Card.tsx'
-import { CartItemControls } from '../components/CartItemControls.tsx'
+import { CartItem } from '../components/CartItem.tsx'
 
 
 interface ICartList {
@@ -11,9 +10,7 @@ export function CartList({ listItems }: ICartList) {
 	const products  = listItems.map(listItem => listItem.product)
 	const cartItems = products.map(product => (
 		<li>
-			<Card.Body product={product}>
-				<CartItemControls {...product} />
-			</Card.Body>
+			<CartItem product={product}/>
 		</li>
 	))
 
