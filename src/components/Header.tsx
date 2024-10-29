@@ -1,9 +1,9 @@
-import { Product } from '../data/types/Product.ts'
-import React, { PropsWithChildren, useState } from 'react'
-import { debounce, DebouncedFunc } from 'lodash'
-import { CiBag1, CiSearch, CiShoppingCart } from 'react-icons/ci'
+import React, { useState } from 'react'
+import { debounce } from 'lodash'
+import { CiBag1, CiShoppingCart } from 'react-icons/ci'
 import { Link } from 'react-router-dom'
 import { useSearchData } from '../hooks/useSearchData.ts'
+import { SearchWidget } from './SearchWidget.tsx'
 
 
 export { Header }
@@ -37,7 +37,7 @@ function Header() {
 			<menu className="flex flex-grow justify-between gap-4 items-center">
 				<li>
 					<SearchWidget handleSearchDebounce={handleSearchDebounce}
-								  search={search} data={data}/>
+								  data={data}/>
 				</li>
 
 				<li>
@@ -49,42 +49,5 @@ function Header() {
 				</li>
 			</menu>
 		</header>
-	)
-}
-
-interface ISearchWidget extends PropsWithChildren {
-	handleSearchDebounce: DebouncedFunc<(event: React.FormEvent<HTMLInputElement>) => void>
-	search: string
-	data?: Product[]
-}
-
-function SearchWidget(props: ISearchWidget) {
-	const { handleSearchDebounce, search, data } = props
-
-	return (
-		<form className="flex rounded overflow-hidden">
-			<label className="sr-only" htmlFor="search">
-				search term
-			</label>
-
-			<input className="bg-gray-200 p-2 max-w-40"
-				   onInput={handleSearchDebounce}
-				   type="search"
-				   name="search"
-				   list="suggestions"
-				   id="search"/>
-
-			<datalist className="bg-gray-200" id="suggestions">
-				{((search !== '') && data)
-				 && data.map(product => (<option>{product.name}</option>))
-				}
-			</datalist>
-
-			<button className="bg-blue-500 px-4 py-2"
-					type="submit">
-				<span className="sr-only">search products</span>
-				<CiSearch className="size-5"/>
-			</button>
-		</form>
 	)
 }
