@@ -1,7 +1,8 @@
-import React, { ComponentProps, PropsWithChildren } from 'react'
+import React, { PropsWithChildren } from 'react'
 import { DebouncedFunc } from 'lodash'
 import { Product } from '../data/types/Product.ts'
 import { CiSearch } from 'react-icons/ci'
+import { SearchSuggestions } from './SearchSuggestions.tsx'
 
 
 interface ISearchWidget extends PropsWithChildren {
@@ -29,7 +30,7 @@ export function SearchWidget(props: ISearchWidget) {
 	}
 
 	return (
-		<form className="grid rounded overflow-hidden" style={formStyles}>
+		<form className="grid rounded" style={formStyles}>
 			<label className="sr-only" htmlFor="search">
 				search term
 			</label>
@@ -42,8 +43,9 @@ export function SearchWidget(props: ISearchWidget) {
 				   id="search"/>
 
 			{
-				data && data.length > 0 && (
-						 <SearchSuggestions products={data} style={suggestionsStyles}/>)
+				data && data.length > 0
+				&& (<SearchSuggestions products={data}
+									   style={suggestionsStyles}/>)
 			}
 
 			<button className="bg-blue-500 px-4 py-2"
@@ -56,20 +58,3 @@ export function SearchWidget(props: ISearchWidget) {
 	)
 }
 
-interface ISearchSuggestions extends ComponentProps<'aside'> {
-	products: Product[]
-}
-
-function SearchSuggestions({ products }: ISearchSuggestions) {
-	return (
-		<aside className="bg-gray-200">
-			<ul className="overflow-y-scroll h-10">
-				{products.map(product => (
-					<li key={product.id}>
-						{product.name}
-					</li>
-				))}
-			</ul>
-		</aside>
-	)
-}
